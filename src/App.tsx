@@ -5,9 +5,12 @@ import { DollRenderer } from './components/DollRenderer';
 import { CategoryNav } from './components/CategoryNav';
 import { ItemSelectorPanel } from './components/ItemSelectorPanel';
 import { ActionControls } from './components/ActionControls';
-import { Sparkles, Heart } from 'lucide-react';
+import { StyleModal } from './components/StyleModal';
+import { ROAdventure } from './components/ROAdventure';
+import { Sparkles, Heart, Compass } from 'lucide-react';
 
 export function App() {
+  const [currentView, setCurrentView] = useState<'dressup' | 'ro_map'>('dressup');
   const [dollState, setDollState] = useState<DollState>(DEFAULT_DOLL_STATE);
   const [activeCategory, setActiveCategory] = useState<CategoryType>('clothes');
 
@@ -16,6 +19,10 @@ export function App() {
   const handleUpdate = (updates: Partial<DollState>) => {
     setDollState((prev) => ({ ...prev, ...updates }));
   };
+
+  if (currentView === 'ro_map') {
+    return <ROAdventure onBackToDressUp={() => setCurrentView('dressup')} />;
+  }
 
   return (
     <div className="min-h-screen bg-radial from-[#FFF5F8] via-[#FFEBF1] to-[#FFDEE9] flex flex-col justify-between p-3 md:p-6 text-[#554048]">
@@ -46,9 +53,18 @@ export function App() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Button to enter RO map */}
+          <button
+            onClick={() => setCurrentView('ro_map')}
+            className="flex items-center gap-1.5 text-xs font-black text-amber-900 bg-gradient-to-r from-amber-300 to-yellow-400 hover:from-amber-400 hover:to-yellow-500 px-4 py-2 rounded-2xl shadow-md hover:scale-105 transition cursor-pointer border border-amber-400/50"
+          >
+            <Compass className="w-4 h-4 text-amber-800" />
+            <span>進入 RO 冒險地圖 ⚔️</span>
+          </button>
+
           <button
             onClick={() => setIsStyleModalOpen(true)}
-            className="flex items-center gap-1.5 text-xs font-bold text-[#FF4D6D] bg-white/80 hover:bg-white px-3.5 py-2 rounded-2xl border border-[#FFCCD5]/80 shadow-2xs transition cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-[#FF4D6D] bg-white/80 hover:bg-white px-3.5 py-2 rounded-2xl border border-[#FFCCD5]/80 shadow-2xs transition cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-[#FFB703]" />
             <span>查看 10 款美術風格庫</span>
@@ -108,14 +124,11 @@ export function App() {
         </section>
       </main>
 
-      {/* ================= FOOTER ================= */}
-      <footer className="max-w-6xl mx-auto w-full mt-4 text-center text-xs text-[#A27B88] flex flex-wrap items-center justify-between gap-2">
-        <span>© 萌萌紙娃娃換裝秀 — 點擊各部位更換造型，長按色票自訂專屬色系</span>
-        <div className="flex items-center gap-2">
-          <span>支援耳飾、鞋襪、眉毛、眼妝、唇蜜換色</span>
-          <span className="text-[#FF4D6D]">♥</span>
-        </div>
-      </footer>
+      {/* Style Modal */}
+      <StyleModal
+        isOpen={isStyleModalOpen}
+        onClose={() => setIsStyleModalOpen(false)}
+      />
     </div>
   );
 }
