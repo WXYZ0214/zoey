@@ -57,19 +57,21 @@ export const ActionControls: React.FC<ActionControlsProps> = ({
     const backHairList = ['twintails', 'long_wave', 'short_bob', 'high_pony', 'space_buns', 'straight_long'];
     const topsList = ['sailor', 'off_shoulder', 'sweater', 'crop_hoodie', 'cardigan'];
     const bottomsList = ['pleated_skirt', 'ruffle_skirt', 'denim_shorts', 'cargo_pants', 'plaid_skirt'];
-    const dressesList = ['maid_dress', 'strawberry_sundress', 'gothic_dress', 'yukata'];
+    const dressesList = ['sailor_frill', 'maid_dress', 'strawberry_sundress', 'gothic_dress', 'yukata', 'cozy_sweater'];
     const socksList = ['frill_ankle', 'knee_high', 'thigh_high', 'star_tights', 'none'];
     const shoesList = ['mary_janes', 'chunky_loafers', 'sneakers', 'bear_slippers', 'boots'];
     const earringsList = ['star', 'pearl', 'strawberry', 'hoop', 'heart', 'cross', 'none'];
     const headwearList = ['big_bow', 'cat_ears', 'bear_ears', 'maid_frill', 'beret', 'star_pins', 'halo', 'none'];
-    const glassesList = ['round_glasses', 'heart_sunglasses', 'none', 'none'];
+    const glassesList = ['round_glasses', 'heart_sunglasses', 'none', 'none', 'none'];
     const necklacesList = ['choker', 'pearl', 'star_pendant', 'none'];
     const handheldList = ['bunny_plush', 'boba', 'wand', 'camera', 'none'];
     const bgList = ['bedroom', 'sakura', 'cafe', 'stars', 'photobooth'];
     const lipsList = ['smile', 'open', 'cat', 'pout'];
     const blushList = ['apple', 'hearts', 'stripes', 'across'];
+    const eyeShapeList = ['sparkle', 'sparkle', 'soft', 'cat'];
+    const browsList = ['soft', 'straight', 'arched'];
 
-    const isDress = Math.random() > 0.6;
+    const isDress = Math.random() > 0.45;
 
     const randomState: DollState = {
       ...state,
@@ -81,10 +83,13 @@ export const ActionControls: React.FC<ActionControlsProps> = ({
       topColor: rand(CLOTHING_PALETTES).value,
       bottomColor: rand(CLOTHING_PALETTES).value,
       dressColor: rand(CLOTHING_PALETTES).value,
+      socksColor: rand(CLOTHING_PALETTES).value,
       shoesColor: rand(CLOTHING_PALETTES).value,
       headwearColor: rand(CLOTHING_PALETTES).value,
       earringsColor: rand(['#FFD166', '#E8E8EE', '#F4A261', '#FF4D6D', '#222222']),
 
+      eyeShape: rand(eyeShapeList),
+      eyebrows: rand(browsList),
       bangs: rand(bangsList),
       backHair: rand(backHairList),
       outfitType: isDress ? 'dress' : 'split',

@@ -21,7 +21,12 @@ export function App() {
   };
 
   if (currentView === 'ro_map') {
-    return <ROAdventure onBackToDressUp={() => setCurrentView('dressup')} />;
+    return (
+      <ROAdventure
+        dollState={dollState}
+        onBackToDressUp={() => setCurrentView('dressup')}
+      />
+    );
   }
 
   return (
@@ -89,12 +94,12 @@ export function App() {
               <Heart className="w-3.5 h-3.5 fill-[#FF8FA3]" />
               <span>Chibi Model</span>
             </div>
-            <div className="absolute top-3 right-4 text-[10px] text-[#A27B88] bg-[#FFF0F3] px-2 py-0.5 rounded-full font-bold">
-              500 × 650 Vector
+            <div className="absolute top-3 right-4 text-[10px] text-[#A27B88] bg-[#FFF0F3] px-2.5 py-0.5 rounded-full font-bold z-95">
+              896 × 1200 HD Anime
             </div>
 
-            {/* The SVG Doll */}
-            <div className="w-full max-w-[380px] aspect-[500/650] my-auto">
+            {/* The Illustrated Chibi Doll */}
+            <div className="w-full max-w-[380px] aspect-[896/1200] my-auto">
               <DollRenderer
                 state={dollState}
                 className="w-full h-full shadow-inner border border-black/5"

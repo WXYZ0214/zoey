@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CategoryType, DollState } from '../types/doll';
 import {
   SKIN_PALETTES,
@@ -23,6 +23,10 @@ export const ItemSelectorPanel: React.FC<ItemSelectorPanelProps> = ({
   onChange,
 }) => {
   const [subTab, setSubTab] = useState<string>('default');
+
+  useEffect(() => {
+    setSubTab('default');
+  }, [category]);
 
   const update = (patch: Partial<DollState>) => {
     sound.playPop();
@@ -86,8 +90,9 @@ export const ItemSelectorPanel: React.FC<ItemSelectorPanelProps> = ({
               <div className="grid grid-cols-2 gap-2">
                 {[
                   { id: 'sparkle', name: '水汪汪星眸', icon: '✨👀' },
-                  { id: 'soft', name: '溫柔下垂眼', icon: '🥺' },
+                  { id: 'soft', name: '溫柔笑瞇眼', icon: '😊' },
                   { id: 'cat', name: '傲嬌貓咪眼', icon: '😼' },
+                  { id: 'wink', name: '俏皮單眼眨', icon: '😉' },
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -302,7 +307,10 @@ export const ItemSelectorPanel: React.FC<ItemSelectorPanelProps> = ({
             </button>
             <button
               onClick={() => {
-                update({ outfitType: 'dress', dress: state.dress === 'none' ? 'maid_dress' : state.dress });
+                update({
+                  outfitType: 'dress',
+                  dress: state.dress === 'none' ? 'sailor_frill' : state.dress,
+                });
               }}
               className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                 state.outfitType === 'dress'
@@ -365,10 +373,12 @@ export const ItemSelectorPanel: React.FC<ItemSelectorPanelProps> = ({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { id: 'maid_dress', name: '夢幻圍裙女僕裝', icon: '🎀' },
+                  { id: 'sailor_frill', name: '夢幻水手荷葉洋裝', icon: '⚓' },
+                  { id: 'maid_dress', name: '蕾絲圍裙女僕裝', icon: '🎀' },
                   { id: 'strawberry_sundress', name: '田園草莓泡泡洋裝', icon: '🍓' },
                   { id: 'gothic_dress', name: '古典哥德束腰長裙', icon: '🥀' },
                   { id: 'yukata', name: '櫻花祭典和風浴衣', icon: '👘' },
+                  { id: 'cozy_sweater', name: '慵懶兔兔長版毛衣', icon: '🧶' },
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -478,6 +488,13 @@ export const ItemSelectorPanel: React.FC<ItemSelectorPanelProps> = ({
           </div>
 
           <div>
+            <ColorSwatchPicker
+              label="襪子色系"
+              currentColor={state.socksColor}
+              palettes={CLOTHING_PALETTES}
+              onChangeColor={(color) => update({ socksColor: color })}
+            />
+
             <div className="text-xs font-bold text-[#72525A] mb-2 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[#FF758F]" />
               襪子搭配
