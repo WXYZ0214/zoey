@@ -6,11 +6,9 @@ import { CategoryNav } from './components/CategoryNav';
 import { ItemSelectorPanel } from './components/ItemSelectorPanel';
 import { ActionControls } from './components/ActionControls';
 import { StyleModal } from './components/StyleModal';
-import { ROAdventure } from './components/ROAdventure';
-import { Sparkles, Heart, Compass } from 'lucide-react';
+import { Sparkles, Heart } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'dressup' | 'ro_map'>('dressup');
   const [dollState, setDollState] = useState<DollState>(DEFAULT_DOLL_STATE);
   const [activeCategory, setActiveCategory] = useState<CategoryType>('clothes');
 
@@ -19,15 +17,6 @@ export function App() {
   const handleUpdate = (updates: Partial<DollState>) => {
     setDollState((prev) => ({ ...prev, ...updates }));
   };
-
-  if (currentView === 'ro_map') {
-    return (
-      <ROAdventure
-        dollState={dollState}
-        onBackToDressUp={() => setCurrentView('dressup')}
-      />
-    );
-  }
 
   return (
     <div className="min-h-screen bg-radial from-[#FFF5F8] via-[#FFEBF1] to-[#FFDEE9] flex flex-col justify-between p-3 md:p-6 text-[#554048]">
@@ -58,15 +47,6 @@ export function App() {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Button to enter RO map */}
-          <button
-            onClick={() => setCurrentView('ro_map')}
-            className="flex items-center gap-1.5 text-xs font-black text-amber-900 bg-gradient-to-r from-amber-300 to-yellow-400 hover:from-amber-400 hover:to-yellow-500 px-4 py-2 rounded-2xl shadow-md hover:scale-105 transition cursor-pointer border border-amber-400/50"
-          >
-            <Compass className="w-4 h-4 text-amber-800" />
-            <span>進入 RO 冒險地圖 ⚔️</span>
-          </button>
-
           <button
             onClick={() => setIsStyleModalOpen(true)}
             className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-[#FF4D6D] bg-white/80 hover:bg-white px-3.5 py-2 rounded-2xl border border-[#FFCCD5]/80 shadow-2xs transition cursor-pointer"
