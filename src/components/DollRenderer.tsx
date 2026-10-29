@@ -201,7 +201,7 @@ export const DollRenderer: React.FC<DollRendererProps> = ({
   const shoesMap: Record<string, string> = {
     mary_janes: '/assets/chibi/shoes_mary_janes.png',
     chunky_loafers: '/assets/chibi/shoes_black_loafers.png',
-    sneakers: '/assets/chibi/shoes_strawberry.png',
+    sneakers: '/assets/chibi/shoes_sneakers.png',
     bear_slippers: '/assets/chibi/shoes_bear_slippers.png',
     boots: '/assets/chibi/shoes_boots.png',
   };

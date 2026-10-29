@@ -466,9 +466,9 @@ export const ItemSelectorPanel: React.FC<ItemSelectorPanelProps> = ({
             <div className="grid grid-cols-2 gap-2">
               {[
                 { id: 'mary_janes', name: '亮面瑪莉珍鞋', icon: '👞' },
-                { id: 'chunky_loafers', name: '金扣厚底樂福鞋', icon: '🥾' },
-                { id: 'sneakers', name: '粉彩輕便運動鞋', icon: '👟' },
-                { id: 'bear_slippers', name: '毛絨小熊室內拖', icon: '🧸' },
+                { id: 'chunky_loafers', name: '古典黑色樂福鞋', icon: '🥾' },
+                { id: 'sneakers', name: '粉彩厚底運動球鞋', icon: '👟' },
+                { id: 'bear_slippers', name: '和風木屐 / 舒適拖鞋', icon: '🩴' },
                 { id: 'boots', name: '維多利亞繫帶短靴', icon: '👢' },
               ].map((item) => (
                 <button
